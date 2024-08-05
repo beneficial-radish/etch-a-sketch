@@ -1,11 +1,15 @@
 
 const container = document.querySelector(".container");
 
-
+function addOpacity(hovered) {
+    opacity = Number(hovered.style.opacity)
+    opacity = opacity + .1
+    hovered.style.opacity  = `${opacity}`
+}
 
 function allTheDivs(inContainer, numOfRows) {
-    if(numOfRows <=100) {
-        for (i=1; i<=numOfRows; i++) {
+    if (numOfRows <= 100) {
+        for (i = 1; i <= numOfRows; i++) {
             const row = document.createElement(`div`)
             inContainer.appendChild(row)
             row.style.maxHeight = "100%"
@@ -15,17 +19,18 @@ function allTheDivs(inContainer, numOfRows) {
             row.style.flexDirection = "column"
             row.style.padding = "0"
             row.style.margin = "0"
-                for(j=1; j<=numOfRows; j++) {
-                    const pixel = document.createElement(`div`)
-                    pixel.setAttribute("class", "pixel")
-                    row.appendChild(pixel)
-                    pixel.style.maxWidth= "100%"
-                    pixel.style.maxHeight = "100%"
-                    pixel.style.flex = "1 1 0"
-                    pixel.style.backgroundColor = "pink"
-                    pixel.style.margin = "0"
-                    pixel.style.opacity = "50%"
-                }
+            for (j = 1; j <= numOfRows; j++) {
+                const pixel = document.createElement(`div`)
+                pixel.setAttribute("class", "pixel")
+                row.appendChild(pixel)
+                pixel.style.maxWidth = "100%"
+                pixel.style.maxHeight = "100%"
+                pixel.style.flex = "1 1 0"
+                pixel.style.backgroundColor = "pink"
+                pixel.style.margin = "0"
+                pixel.style.opacity = ".5"
+                pixel.addEventListener("mouseenter", () => addOpacity(pixel))
+            }
         }
     } else {
         alert("You have not entered a valid grid size.")
