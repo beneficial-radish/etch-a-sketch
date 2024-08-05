@@ -1,0 +1,10 @@
+.container {
+    display: flex;
+    width: 90vw;
+    height:90vw;
+    border-color: black;
+    border-style: dotted;
+    padding: 0;
+    margin: 0;
+
+}
