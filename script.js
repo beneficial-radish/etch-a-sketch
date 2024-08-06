@@ -26,28 +26,6 @@ function addOpacity(hovered) {
     hovered.style.opacity = `${opacity}`
 }
 
-//when size of grid is selected, previously generated grid should be removed
-//and replaced with new grid.
-
-const generatorBtn = document.querySelector(".generatorBtn")
-const inputBox = document.querySelector(".inputBox")
-
-function removeOldGrid(previousGrid) {
-    for (k=1; k<=previousGrid; k++) {
-        const oldRow = document.querySelector(`.row${k}`)
-        container.removeChild(oldRow)
-    }
-}
-
-function newGrid() {
-    newGridSize = inputBox.value
-    removeOldGrid(gridSize)
-    allTheDivs(container, newGridSize)
-
-}
-
-generatorBtn.addEventListener("click", () => newGrid())
-
 
 //generate a grid of variable size
 
@@ -87,10 +65,31 @@ function allTheDivs(inContainer, numOfRows) {
 };
 
 
-
 //default grid size is 4x4
 allTheDivs(container, 4)
 
+
+//when size of grid is selected, previously generated grid should be removed
+//and replaced with new grid.
+
+const generatorBtn = document.querySelector(".generatorBtn")
+const inputBox = document.querySelector(".inputBox")
+
+function removeOldGrid(previousGrid) {
+    for (k=1; k<=previousGrid; k++) {
+        const oldRow = document.querySelector(`.row${k}`)
+        container.removeChild(oldRow)
+    }
+}
+
+function newGrid() {
+    newGridSize = inputBox.value
+    removeOldGrid(gridSize)
+    allTheDivs(container, newGridSize)
+
+}
+
+generatorBtn.addEventListener("click", () => newGrid())
 
 
 
