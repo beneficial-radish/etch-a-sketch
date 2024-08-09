@@ -34,24 +34,12 @@ function allTheDivs(inContainer, numOfRows) {
         for (i = 1; i <= numOfRows; i++) {
             const row = document.createElement(`div`)
             inContainer.appendChild(row)
-            row.style.maxHeight = "100%"
-            row.style.maxWidth = "100%"
-            row.style.flex = "1 1 0"
-            row.style.display = "flex"
-            row.style.flexDirection = "column"
-            row.style.padding = "0"
-            row.style.margin = "0"
+            
             row.setAttribute(`class`, `rows`)
             for (j = 1; j <= numOfRows; j++) {
                 const pixel = document.createElement(`div`)
                 pixel.setAttribute("class", `pixels`)
                 row.appendChild(pixel)
-                pixel.style.maxWidth = "100%"
-                pixel.style.maxHeight = "100%"
-                pixel.style.flex = "1 1 0"
-                pixel.style.backgroundColor = "black"
-                pixel.style.margin = "0"
-                pixel.style.opacity = "0"
                 pixel.addEventListener("mouseenter", () => addOpacity(pixel))
                 pixel.addEventListener("mouseenter", () => randomRGB(pixel))
             }
