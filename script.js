@@ -13,15 +13,15 @@ function random1to255() {
 //when attached to event listener, will cause each pixel to change to a random color
 //when hovered over
 function randomRGB(colored) {
-red = random1to255()
-green = random1to255()
-blue = random1to255()
-colored.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`
+    let red = random1to255()
+    let green = random1to255()
+    let blue = random1to255()
+    colored.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`
 }
 
 //opacity should reach 100% after ten passes
 function addOpacity(hovered) {
-    opacity = Number(hovered.style.opacity)
+    let opacity = Number(hovered.style.opacity)
     opacity = opacity + .1
     hovered.style.opacity = `${opacity}`
 }
@@ -41,11 +41,10 @@ function allTheDivs(inContainer, numOfRows) {
             row.style.flexDirection = "column"
             row.style.padding = "0"
             row.style.margin = "0"
-            row.setAttribute(`class`, `row${i}`)
+            row.setAttribute(`class`, `rows`)
             for (j = 1; j <= numOfRows; j++) {
                 const pixel = document.createElement(`div`)
-                pixel.setAttribute("class", `pixel${j}`)
-                console.log(pixel)
+                pixel.setAttribute("class", `pixels`)
                 row.appendChild(pixel)
                 pixel.style.maxWidth = "100%"
                 pixel.style.maxHeight = "100%"
@@ -76,9 +75,9 @@ const generatorBtn = document.querySelector(".generatorBtn")
 const inputBox = document.querySelector(".inputBox")
 
 function removeOldGrid(previousGrid) {
-    for (k=1; k<=previousGrid; k++) {
-        const oldRow = document.querySelector(`.row${k}`)
-        container.removeChild(oldRow)
+    const oldRow = document.querySelectorAll(`.rows`)
+    for (k=0; k<previousGrid; k++) {
+        container.removeChild(oldRow[k])
     }
 }
 
