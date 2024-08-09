@@ -1,7 +1,28 @@
 
 const container = document.querySelector(".container");
-let gridSize = 4
-let newGridSize = 0
+
+//generate a grid of variable size. 
+let gridSize
+function allTheDivs(inContainer, numOfRows) {
+    if (numOfRows <= 100 && numOfRows >=1) {
+        for (i = 1; i <= numOfRows; i++) {
+            const row = document.createElement(`div`)
+            inContainer.appendChild(row)
+            row.setAttribute(`class`, `rows`)
+            for (j = 1; j <= numOfRows; j++) {
+                const pixel = document.createElement(`div`)
+                pixel.setAttribute("class", `pixels`)
+                row.appendChild(pixel)
+                pixel.addEventListener("mouseenter", () => addOpacity(pixel))
+                pixel.addEventListener("mouseenter", () => randomRGB(pixel))
+            }
+        }
+        gridSize = numOfRows
+    } else {
+        alert("You have not entered a valid grid size.")
+    }
+
+};
 
 
 //all possible RGB values
@@ -27,40 +48,11 @@ function addOpacity(hovered) {
 }
 
 
-//generate a grid of variable size
-
-function allTheDivs(inContainer, numOfRows) {
-    if (numOfRows <= 100 && numOfRows >=1) {
-        for (i = 1; i <= numOfRows; i++) {
-            const row = document.createElement(`div`)
-            inContainer.appendChild(row)
-            
-            row.setAttribute(`class`, `rows`)
-            for (j = 1; j <= numOfRows; j++) {
-                const pixel = document.createElement(`div`)
-                pixel.setAttribute("class", `pixels`)
-                row.appendChild(pixel)
-                pixel.addEventListener("mouseenter", () => addOpacity(pixel))
-                pixel.addEventListener("mouseenter", () => randomRGB(pixel))
-            }
-        }
-        gridSize = numOfRows
-    } else {
-        alert("You have not entered a valid grid size.")
-    }
-
-};
-
-
 //default grid size is 4x4
 allTheDivs(container, 4)
 
-
-//when size of grid is selected, previously generated grid should be removed
+//when size of new grid is given, previously generated grid should be removed
 //and replaced with new grid.
-
-const generatorBtn = document.querySelector(".generatorBtn")
-const inputBox = document.querySelector(".inputBox")
 
 function removeOldGrid(previousGrid) {
     const oldRow = document.querySelectorAll(`.rows`)
@@ -69,6 +61,9 @@ function removeOldGrid(previousGrid) {
     }
 }
 
+const inputBox = document.querySelector(".inputBox")
+let newGridSize
+
 function newGrid() {
     newGridSize = inputBox.value
     removeOldGrid(gridSize)
@@ -76,6 +71,7 @@ function newGrid() {
 
 }
 
+const generatorBtn = document.querySelector(".generatorBtn")
 generatorBtn.addEventListener("click", () => newGrid())
 
 
